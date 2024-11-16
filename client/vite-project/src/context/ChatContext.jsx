@@ -4,7 +4,7 @@ import { io } from "socket.io-client";
 
 export const ChatContext = createContext();
 
-export const ChatContextProvider = ({ children, user }) => {
+const ChatContextProvider = ({ children, user }) => {
   const [userChats, setUserChats] = useState(null);
   const [isUserChatsLoading, setIsUserChatsLoading] = useState(false);
   const [userChatsError, setUserChatsError] = useState(null);
@@ -13,7 +13,7 @@ export const ChatContextProvider = ({ children, user }) => {
   const [messages, setMessages] = useState(null);
   const [isMessagesLoading, setIsMessagesLoanding] = useState(false);
   const [messagesError, setMessagesError] = useState(null);
-  const [sendTextMessageError, setSendTextMessageError] = useState(null);
+  const [setSendTextMessageError] = useState(null);
   const [newMessage, setNewMessage] = useState(null);
   const [socket, setSocket] = useState(null);
   const [onlineUsers, setOnlineUsers] = useState([]);
@@ -22,7 +22,7 @@ export const ChatContextProvider = ({ children, user }) => {
 
   //iniciar socket
   useEffect(() => {
-    const newSocket = io("http://localhost:3000");
+    const newSocket = io("http://localhost:5000");
     setSocket(newSocket);
 
     return () => {
@@ -48,8 +48,10 @@ export const ChatContextProvider = ({ children, user }) => {
     if (socket === null) return;
     const recipientId = currentChat?.members.find((id) => id !== user?._id);
 
-    socket.emit("sendMessage", { ...newMessage, recipientId });
-  }, [newMessage]);
+    if (socket) {
+      socket.emit("sendMessage", { ...newMessage, recipientId });
+    }
+  }, [newMessage, socket, currentChat, user]);
 
   //RECEIVE MESSAGE
   useEffect(() => {
@@ -201,3 +203,5 @@ export const ChatContextProvider = ({ children, user }) => {
     </ChatContext.Provider>
   );
 };
+
+export default ChatContextProvider;
