@@ -204,4 +204,4 @@ const ChatContextProvider = ({ children, user }) => {
   );
 };
 
-export default ChatContextProvider;
+export { ChatContextProvider };
