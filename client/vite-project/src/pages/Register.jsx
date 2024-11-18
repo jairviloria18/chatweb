@@ -57,6 +57,16 @@ const Register = () => {
                   <p>{registerError?.message} </p>
                 </Alert>
               )}
+              <p>
+                ¿Necesitas ayuda?{" "}
+                <a
+                  href="/manual-de-usuario.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Descarga el Manual de Usuario
+                </a>
+              </p>
             </Stack>
           </Col>
         </Row>

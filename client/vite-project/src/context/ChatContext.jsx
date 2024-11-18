@@ -30,6 +30,7 @@ const ChatContextProvider = ({ children, user }) => {
     };
   }, [user]);
 
+  //MANEJO DE USUARIOS EN LINEA
   useEffect(() => {
     if (!socket) return;
 
@@ -67,6 +68,7 @@ const ChatContextProvider = ({ children, user }) => {
     };
   }, [socket, currentChat]);
 
+  //OBTENER USUARIOS PARA NUEVOS CHATS
   useEffect(() => {
     const getUsers = async () => {
       const response = await getRequest(`${baseUrl}/users/get`);
@@ -95,6 +97,7 @@ const ChatContextProvider = ({ children, user }) => {
     getUsers();
   }, [userChats, user]);
 
+  //OBTENER CHATS DEL USUARIO
   useEffect(() => {
     const getUserChats = async () => {
       if (user?._id) {
@@ -116,6 +119,7 @@ const ChatContextProvider = ({ children, user }) => {
     getUserChats();
   }, [user]);
 
+  //OBTENER MENSAJES DEL CHAT ACTUAL
   useEffect(() => {
     const getMessages = async () => {
       setIsMessagesLoanding(true);
@@ -137,6 +141,7 @@ const ChatContextProvider = ({ children, user }) => {
     getMessages();
   }, [currentChat]);
 
+  //ENVIAR MENSAJE DE TEXTO
   const sendTextMessage = useCallback(
     async (textMessage, sender, currentChatId, setTextMessage) => {
       if (!textMessage) return console.log("Debes escribir algo...");
@@ -161,10 +166,12 @@ const ChatContextProvider = ({ children, user }) => {
     []
   );
 
+  //ACTUALIZAR EL CHAT ACTUAL
   const updateCurrentChat = useCallback((chat) => {
     setCurrentChat(chat);
   }, []);
 
+  //CREAR UN NUEVO CHAT
   const createChat = useCallback(async (firstId, secondId) => {
     const response = await postRequest(
       `${baseUrl}/chats`,

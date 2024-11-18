@@ -6,6 +6,7 @@ import { Stack } from "react-bootstrap";
 import moment from "moment";
 import InputEmoji from "react-input-emoji";
 
+//RENDERIZAR CAJA DE CHAT CON MENSAJES, ENCABEZADO Y ENTRADA DE TEXTO
 const ChatBox = () => {
   const { user } = useContext(AuthContext);
   const { currentChat, messages, isMessagesLoading, sendTextMessage } =
@@ -35,11 +36,14 @@ const ChatBox = () => {
     );
   }
 
+  //RENDERIZADO PRINCIPAL DEL COMPONENTE
   return (
     <Stack gap={4} className="chat-box">
       <div className="chat-header">
         <strong>{recipientUser?.name}</strong>
       </div>
+
+      {/*LISTA DE MENSAJES*/}
       <Stack gap={3} className="messages">
         {messages &&
           messages.map((message, index) => (
@@ -72,6 +76,7 @@ const ChatBox = () => {
             sendTextMessage(textMessage, user, currentChat._id, setTextMessage)
           }
         >
+          {/*ICONO BOTON ENVIAR*/}
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="16"

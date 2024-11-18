@@ -5,6 +5,7 @@ export const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  //MANEJO DE ESTADOS DE REGISTRO
   const [registerError, setRegisterError] = useState(null);
   const [isRegisterLoading, setIsRegisterLoading] = useState(false);
   const [registerInfo, setRegisterInfo] = useState({
@@ -12,6 +13,8 @@ export const AuthContextProvider = ({ children }) => {
     email: "",
     password: "",
   });
+
+  //MANEJO DE ESTADOS DE ACCESO
   const [loginError, setLoginError] = useState(null);
   const [isLoginLoading, setIsLoginLoading] = useState(false);
   const [loginInfo, setLoginInfo] = useState({
@@ -36,6 +39,7 @@ export const AuthContextProvider = ({ children }) => {
     setLoginInfo(info);
   }, []);
 
+  //FUNCION REGISTRAR USUARIO
   const registerUser = useCallback(
     async (e) => {
       e.preventDefault();
@@ -60,6 +64,7 @@ export const AuthContextProvider = ({ children }) => {
     [registerInfo]
   );
 
+  //FUNCION ACCESO DE USUARIO
   const loginUser = useCallback(
     async (e) => {
       e.preventDefault();
@@ -83,6 +88,7 @@ export const AuthContextProvider = ({ children }) => {
     [loginInfo]
   );
 
+  //FUNCION CERRAR SESION
   const logoutUser = useCallback(() => {
     localStorage.removeItem("User");
     setUser(null);

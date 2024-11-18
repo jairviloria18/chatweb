@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { useContext } from "react";
 
+//BARRA DE NAVEGACION DE LA APP
 const NavBar = () => {
   const { user, logoutUser } = useContext(AuthContext);
   return (

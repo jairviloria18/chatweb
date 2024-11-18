@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { ChatContext } from "../../context/ChatContext";
 import { AuthContext } from "../../context/AuthContext";
 
+//LISTAR USUARIOS PARA INICIAR CHAT
 const PotentialChats = () => {
   const { user } = useContext(AuthContext);
   const { potentialChats, createChat, onlineUsers } = useContext(ChatContext);
@@ -9,6 +10,7 @@ const PotentialChats = () => {
   console.log("pChats", potentialChats);
   return (
     <>
+      {/*CONTENEDOR PRINCIPAL PARA MOSTRAR CHAT*/}
       <div className="all-users">
         {potentialChats &&
           potentialChats.map((u, index) => {
