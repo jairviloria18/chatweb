@@ -14,10 +14,14 @@ require("dotenv").config();
 
 // Middleware
 app.use(express.json());
+
+const allowedOrigins = [
+  "https://chatweb-theta-five.vercel.app", // Tu URL de frontend
+];
 app.use(
   cors({
-    origin: "chatweb-d8txftiwo-jair-viloria-bertels-projects.vercel.app", // Cambia esto por la URL de tu frontend
-    methods: ["GET", "POST"],
+    origin: "allowedOrigins", // Cambia esto por la URL de tu frontend
+    //methods: ["GET", "POST"],
     credentials: true,
   })
 );
@@ -45,7 +49,7 @@ const server = http.createServer(app);
 // Configurar Socket.IO
 const io = new Server(server, {
   cors: {
-    origin: "chatweb-d8txftiwo-jair-viloria-bertels-projects.vercel.app",
+    origin: "https://chatweb-theta-five.vercel.app",
   },
 });
 
