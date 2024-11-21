@@ -14,7 +14,13 @@ require("dotenv").config();
 
 // Middleware
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: "chatweb-d8txftiwo-jair-viloria-bertels-projects.vercel.app", // Cambia esto por la URL de tu frontend
+    methods: ["GET", "POST"],
+    credentials: true,
+  })
+);
 
 // Rutas del API
 app.use("/users", userRoute);
@@ -39,7 +45,7 @@ const server = http.createServer(app);
 // Configurar Socket.IO
 const io = new Server(server, {
   cors: {
-    origin: "chatweb-hjjc2hcwx-jair-viloria-bertels-projects.vercel.app",
+    origin: "chatweb-d8txftiwo-jair-viloria-bertels-projects.vercel.app",
   },
 });
 
