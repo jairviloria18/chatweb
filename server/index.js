@@ -39,7 +39,7 @@ const server = http.createServer(app);
 // Configurar Socket.IO
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:5173",
+    origin: "chatweb-hjjc2hcwx-jair-viloria-bertels-projects.vercel.app",
   },
 });
 
