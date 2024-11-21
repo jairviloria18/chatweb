@@ -22,7 +22,7 @@ const ChatContextProvider = ({ children, user }) => {
 
   //iniciar socket
   useEffect(() => {
-    const newSocket = io("import.meta.env.VITE_BACKEND_URL");
+    const newSocket = io(import.meta.env.VITE_BACKEND_URL);
     setSocket(newSocket);
 
     return () => {

@@ -1,4 +1,4 @@
-export const baseUrl = "import.meta.env.VITE_BACKEND_URL";
+export const baseUrl = import.meta.env.VITE_BACKEND_URL;
 
 export const postRequest = async (url, body) => {
   const response = await fetch(url, {
