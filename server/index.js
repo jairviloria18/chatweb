@@ -47,9 +47,10 @@ mongoose
 const server = http.createServer(app);
 
 // Configurar Socket.IO
-const io = new Server(server, {
+const io = require("socket.io")(server, {
   cors: {
-    origin: "https://chatweb-theta-five.vercel.app",
+    origin: ["https://chatweb-theta-five.vercel.app"],
+    credentials: true,
   },
 });
 
