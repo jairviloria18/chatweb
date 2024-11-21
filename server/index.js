@@ -1,5 +1,4 @@
 const express = require("express");
-const dotenv = require("dotenv");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const http = require("http");
@@ -14,17 +13,7 @@ require("dotenv").config();
 
 // Middleware
 app.use(express.json());
-
-const allowedOrigins = [
-  "https://chatweb-theta-five.vercel.app", // Tu URL de frontend
-];
-app.use(
-  cors({
-    origin: "allowedOrigins", // Cambia esto por la URL de tu frontend
-    //methods: ["GET", "POST"],
-    credentials: true,
-  })
-);
+app.use(cors());
 
 // Rutas del API
 app.use("/users", userRoute);
@@ -47,10 +36,9 @@ mongoose
 const server = http.createServer(app);
 
 // Configurar Socket.IO
-const io = require("socket.io")(server, {
+const io = new Server(server, {
   cors: {
-    origin: ["https://chatweb-theta-five.vercel.app"],
-    credentials: true,
+    origin: "http://localhost:5173",
   },
 });
 
